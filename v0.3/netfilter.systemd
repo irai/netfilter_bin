@@ -15,6 +15,10 @@ IFF=eth0
 GW=blockthekids.com
 
 start() {
+  echo "Updating netfilter from github"
+  git pull https://github.com/irai/netfilter_bin.git
+  sudo bash ./netfilter_bin/setup.sh
+  
   echo "Starting netfilter"
 
   # disable DHCP client
