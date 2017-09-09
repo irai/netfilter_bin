@@ -1,5 +1,10 @@
 NETFILTER_DIR=/home/pi/spinifex/golang/bin
-VERSION=0.3
+VERSION=v0.3
 
-sudo ln -s ./${VERSION}/netfilter ${NETFILTER_DIR}/netfilter
-sudo ln -s ./${VERSION}/netfilter.systemd ${NETFILTER_DIR}/netfilter.systemd
+
+BINARIES=${NETFILTER_DIR}/netfilter_bin/${VERSION}
+
+rm ${NETFILTER_DIR}/netfilter ${NETFILTER_DIR}/netfilter.systemd
+
+sudo ln -s ${BINARIES}/netfilter ${NETFILTER_DIR}/netfilter
+sudo ln -s ${BINARIES}/netfilter.systemd ${NETFILTER_DIR}/netfilter.systemd
