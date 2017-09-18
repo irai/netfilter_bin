@@ -30,7 +30,7 @@ start() {
 
   #exec (cd /home/pi/spinifex/golang/bin; sudo /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW 2&> log )
   #exec sudo /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW 2&> log
-  exec sudo  /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW 2&> log
+  exec sudo  /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW -script /home/pi/spinifex/golang/bin/firewall.sh 2&> log
 }
 
 stop() {
