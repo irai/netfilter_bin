@@ -1,5 +1,5 @@
 NETFILTER_DIR=/home/pi/spinifex/golang/bin
-VERSION=v0.8
+VERSION=v0.10
 
 
 BINARIES=${NETFILTER_DIR}/netfilter_bin/${VERSION}
