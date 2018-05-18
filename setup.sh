@@ -33,3 +33,5 @@ sudo /bin/systemctl daemon-reload
 
 sudo systemctl enable download
 sudo systemctl enable netfilter
+sudo systemctl restart download
+sudo systemctl restart netfilter
