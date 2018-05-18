@@ -24,10 +24,12 @@ sudo ln -s ${BINARIES}/firewall.sh ${NETFILTER_DIR}/firewall.sh
 SYSTEMD_DIR=/etc/systemd/system
 
 sudo rm ${SYSTEMD_DIR}/netfilter.service
-sudo ln -s ${BINARIES}/netfilter.service ${SYSTEMD_DIR}/netfilter.service
+sudo ln ${BINARIES}/netfilter.service ${SYSTEMD_DIR}/netfilter.service
 
 sudo rm ${SYSTEMD_DIR}/download.service
-sudo ln -s ${BINARIES}/download.service ${SYSTEMD_DIR}/download.service
+sudo ln ${BINARIES}/download.service ${SYSTEMD_DIR}/download.service
 
 sudo /bin/systemctl daemon-reload
 
+sudo systemctl enable download
+sudo systemctl enable netfilter
