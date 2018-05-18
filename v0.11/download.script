@@ -12,12 +12,16 @@
 #
 
 start() {
-  echo "Updating netfilter from github"
-  git status -uno
-  if [ "$?" -ne 0 ]; then
-    git pull https://github.com/irai/netfilter_bin.git
+  echo "Checking for new netfilter version in github"
+  git fetch
+  #git status -uno
+  work=`git cherry master origin/master`
+  if [ "$work" != "" ]; then
+    echo "Updating netfilter from github"
+    git merge
     if [ "$?" -eq 0 ]; then
       bash ./setup.sh
+      /bin/systemctl restart netfilter
     fi
   fi
 }
