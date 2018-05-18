@@ -1,0 +1,20 @@
+[Unit]
+Description=netfilter binary download startup
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+WorkingDirectory=/home/pi/spinifex/golang/bin/netfilter_bin
+Type=simple
+User=root
+
+
+ExecStart=/bin/bash /home/pi/spinifex/golang/bin/download.script start
+ExecStop=/bin/bash /home/pi/spinifex/golang/bin/download.script stop
+
+RemainAfterExit=no
+RestartSec=3600
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
