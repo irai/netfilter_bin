@@ -23,7 +23,7 @@ start() {
     git merge
     if [ "$?" -eq 0 ]; then
       bash ./setup.sh
-      /bin/systemctl restart netfilter
+      #/bin/systemctl restart netfilter
     fi
   fi
 }
