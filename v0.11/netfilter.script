@@ -17,7 +17,7 @@ GW=blockthekids.com
 start() {
   #echo "Updating netfilter from github"
   #(cd netfilter_bin; git pull https://github.com/irai/netfilter_bin.git; sudo bash ./setup.sh)
-  
+   
   echo "Starting netfilter"
 
   # disable DHCP client
