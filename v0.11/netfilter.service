@@ -1,7 +1,7 @@
 [Unit]
 Description=netfilter startup
 Wants=network-online.target
-After=network.target network-online.target download.target
+After=network.target network-online.target download.service
 
 [Service]
 WorkingDirectory=/home/pi/spinifex/golang/bin
@@ -14,8 +14,8 @@ ExecStartPre=-/bin/systemctl stop dhcpcd.service
 ExecStartPre=-/usr/bin/pkill dhcpd
 ExecStartPre=-/usr/bin/pkill dhclient
 
-ExecStart=/bin/bash /home/pi/spinifex/golang/bin/netfilter.script start
-ExecStop=/bin/bash /home/pi/spinifex/golang/bin/netfilter.script stop
+ExecStart=/home/pi/spinifex/golang/bin/netfilter.script start
+ExecStop=/home/pi/spinifex/golang/bin/netfilter.script stop
 
 RemainAfterExit=no
 RestartSec=240

@@ -12,14 +12,12 @@
 #
 
 start() {
-  echo "Checking for new netfilter version in github"
   git config --global user.email "irai852@gmail.com"
   git config --global user.name "Irai"
   git fetch
-  #git status -uno
   work=`git cherry master origin/master`
   if [ "$work" != "" ]; then
-    echo "Updating netfilter from github"
+    echo "netfilter update available - installing"
     git merge
     if [ "$?" -eq 0 ]; then
       bash ./setup.sh
@@ -29,7 +27,7 @@ start() {
 }
 
 stop() {
-  echo "Updating netfilter from github"
+  echo ""
 }
 
 case $1 in

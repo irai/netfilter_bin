@@ -22,15 +22,15 @@ start() {
 
   # disable DHCP client
   # see: https://help.ubuntu.com/community/NetworkConfigurationCommandLine/Automatic
-  sudo /etc/init.d/network-manager stop
-  sudo /etc/init.d/wicd stop
-  sudo systemctl stop dhcpcd.service
-  sudo pkill dhcpd
-  sudo pkill dhclient
+  #sudo /etc/init.d/network-manager stop
+  #sudo /etc/init.d/wicd stop
+  #sudo systemctl stop dhcpcd.service
+  #sudo pkill dhcpd
+  #sudo pkill dhclient
 
   #exec (cd /home/pi/spinifex/golang/bin; sudo /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW 2&> log )
   #exec sudo /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW 2&> log
-  exec sudo  /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW -script /home/pi/spinifex/golang/bin/firewall.sh 2&> log
+  exec /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW -script /home/pi/spinifex/golang/bin/firewall.sh 
 }
 
 stop() {

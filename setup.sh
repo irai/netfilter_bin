@@ -28,10 +28,13 @@ sudo ln ${BINARIES}/netfilter.service ${SYSTEMD_DIR}/netfilter.service
 
 sudo rm ${SYSTEMD_DIR}/download.service
 sudo ln ${BINARIES}/download.service ${SYSTEMD_DIR}/download.service
+sudo rm ${SYSTEMD_DIR}/download.timer
+sudo ln ${BINARIES}/download.timer ${SYSTEMD_DIR}/download.timer
 
 sudo /bin/systemctl daemon-reload
 
-sudo systemctl enable download
-sudo systemctl enable netfilter
-sudo systemctl restart download
-sudo systemctl restart netfilter
+sudo systemctl enable download.timer
+sudo systemctl enable download.service
+sudo systemctl enable netfilter.service
+sudo systemctl restart netfilter.service
+sudo systemctl restart download.timer
