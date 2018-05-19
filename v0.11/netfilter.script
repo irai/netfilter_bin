@@ -19,7 +19,7 @@ start() {
   #(cd netfilter_bin; git pull https://github.com/irai/netfilter_bin.git; sudo bash ./setup.sh)
    
   echo "Starting netfilter"
-
+ 
   # disable DHCP client
   # see: https://help.ubuntu.com/community/NetworkConfigurationCommandLine/Automatic
   #sudo /etc/init.d/network-manager stop
