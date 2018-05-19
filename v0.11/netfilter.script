@@ -13,7 +13,7 @@
 IFF=eth0
 #GW=ec2-54-252-253-172.ap-southeast-2.compute.amazonaws.com
 GW=blockthekids.com
- 
+  
 start() {
   #echo "Updating netfilter from github"
   #(cd netfilter_bin; git pull https://github.com/irai/netfilter_bin.git; sudo bash ./setup.sh)
