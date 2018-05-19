@@ -11,5 +11,7 @@ User=root
 ExecStart=/home/pi/spinifex/golang/bin/download.script start
 ExecStop=/home/pi/spinifex/golang/bin/download.script stop
 
+TimeoutSec=240
+
 [Install]
 WantedBy=multi-user.target
