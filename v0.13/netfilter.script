@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# This scrip is called by systemd
+# see: /etc/systemd/system/netfilter.service
+#
+# To enable the service:
+# sudo systemctl enable netfilter.service
+#
+# To start the service manually
+# sudo systemctl start netfilter.service
+#
+#
+IFF=eth0
+#GW=ec2-54-252-253-172.ap-southeast-2.compute.amazonaws.com
+GW=blockthekids.com
+  
+start() {
+  #echo "Updating netfilter from github"
+  #(cd netfilter_bin; git pull https://github.com/irai/netfilter_bin.git; sudo bash ./setup.sh)
+   
+  echo "Starting netfilter"
+ 
+  # disable DHCP client
+  # see: https://help.ubuntu.com/community/NetworkConfigurationCommandLine/Automatic
+  #sudo /etc/init.d/network-manager stop
+  #sudo /etc/init.d/wicd stop
+  #sudo systemctl stop dhcpcd.service
+  #sudo pkill dhcpd
+  #sudo pkill dhclient
+
+  #exec (cd /home/pi/spinifex/golang/bin; sudo /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW 2&> log )
+  #exec sudo /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW 2&> log
+  exec /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW -script /home/pi/spinifex/golang/bin/firewall.sh 
+}
+
+stop() {
+exec pkill netfilter
+}
+
+case $1 in
+  start|stop) "$1" ;;
+esac
+
+
