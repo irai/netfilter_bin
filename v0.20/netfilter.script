@@ -19,6 +19,7 @@ start() {
   #(cd netfilter_bin; git pull https://github.com/irai/netfilter_bin.git; sudo bash ./setup.sh)
    
   echo "Starting netfilter"
+  mkdir ./private
  
   # disable DHCP client
   # see: https://help.ubuntu.com/community/NetworkConfigurationCommandLine/Automatic
@@ -30,7 +31,7 @@ start() {
 
   #exec (cd /home/pi/spinifex/golang/bin; sudo /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW 2&> log )
   #exec sudo /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW 2&> log
-  exec /home/pi/spinifex/golang/bin/netfilter -i $IFF -gw $GW -script /home/pi/spinifex/golang/bin/firewall.sh 
+  exec /home/pi/spinifex/bin/netfilter -i $IFF -gw $GW -script /home/pi/spinifex/bin/firewall.sh 
 }
 
 stop() {
