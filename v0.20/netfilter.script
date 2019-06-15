@@ -12,7 +12,7 @@
 #
 IFF=eth0
 #GW=ec2-54-252-253-172.ap-southeast-2.compute.amazonaws.com
-GW=blockthekids.com
+GW=blockthekids.com:443
   
 start() {
   #echo "Updating netfilter from github"
