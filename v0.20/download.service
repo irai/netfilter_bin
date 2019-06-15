@@ -1,0 +1,17 @@
+[Unit]
+Description=netfilter download updates
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+WorkingDirectory=/home/pi/spinifex/bin/netfilter_bin
+Type=oneshot
+User=root
+
+ExecStart=/home/pi/spinifex/golang/bin/download.script start
+ExecStop=/home/pi/spinifex/golang/bin/download.script stop
+
+#TimeoutSec=240
+
+[Install]
+WantedBy=multi-user.target
