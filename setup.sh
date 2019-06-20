@@ -34,7 +34,9 @@ sudo ln ${LATEST}/download.timer ${SYSTEMD_DIR}/download.timer
 
 # update syslogd with unique mac
 mac=`ifconfig -a eth0 | awk '/ether/ { print $2 } '`
-sudo cat ${LATEST}/22-loggly.conf | sed 's/MAC_ADDRESS/'$mac'/g' > /etc/rsyslog.d/22-loggly.conf
+sudo rm /etc/rsyslog.d/22-loggly.conf
+cat ${LATEST}/22-loggly.conf | sudo sed 's/MAC_ADDRESS/'$mac'/g' > ./tmp.conf
+sudo mv ./tmp.conf /etc/rsyslog.d/22-loggly.conf
 
 sudo /bin/systemctl daemon-reload
 
