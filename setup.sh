@@ -1,5 +1,5 @@
 NETFILTER_BIN=/home/pi/spinifex/bin
-VERSION=v0.20
+VERSION=v0.23
          
 LATEST=${NETFILTER_BIN}/netfilter_bin/${VERSION}
 
@@ -33,7 +33,7 @@ sudo rm ${SYSTEMD_DIR}/download.timer
 sudo ln ${LATEST}/download.timer ${SYSTEMD_DIR}/download.timer
 
 # update syslogd with unique mac
-mac=`ifconfig -a eth0 | awk '/ether/ { print $2 } ' | sed 's/:/_/g'`
+mac=`ifconfig -a eth0 | awk '/ether/ { print $2 } ' | sed 's/://g'`
 if test -z "$mac"  ; then mac="mac_unknown"; fi
 sudo rm /etc/rsyslog.d/22-loggly.conf
 cat ${LATEST}/22-loggly.conf | sudo sed 's/MAC_ADDRESS/'$mac'/g' > ./tmp.conf
