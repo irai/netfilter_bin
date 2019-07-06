@@ -3,7 +3,7 @@ VERSION=v0.23
 
 # Setup test build
 if [[ $1 == "test" ]] ; then
-    VERSION=v0.25
+    VERSION=test
 fi
          
 LATEST=${NETFILTER_BIN}/netfilter_bin/${VERSION}
