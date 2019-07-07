@@ -1,5 +1,5 @@
 NETFILTER_BIN=/home/pi/spinifex/bin
-VERSION=v0.23
+VERSION=v0.25
 
 # Setup test build
 if [[ $1 == "test" ]] ; then
