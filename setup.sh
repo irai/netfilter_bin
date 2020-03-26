@@ -1,5 +1,11 @@
-NETFILTER_BIN=/home/pi/spinifex/bin
+
+NETFILTER_BIN=/home/netfilter/spinifex/bin
 VERSION=prod
+
+# fix raspberry PI directory location
+if [ ! -d "/home/netfilter" ]; then
+  sudo ln -s /home/pi /home/netfilter
+fi
 
 # Setup test build
 if [[ $1 == "test" ]] ; then
