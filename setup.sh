@@ -1,20 +1,23 @@
 
-NETFILTER_BIN=/home/netfilter/spinifex/bin
-VERSION=prod
-
+HOME=/home/netfilter
+#
 # fix raspberry PI directory location
+#
 if [ ! -d "/home/netfilter" ]; then
   sudo ln -s /home/pi /home/netfilter
+  sudo mv /home/netfilter/spinifex/private /home/netfilter/private
+  sudo cp -r /home/netfilter/spinifex/bin/netfilter_bin /home/netfilter 
 fi
 
-# Setup test build
+# binary location
+NETFILTER_BIN=$HOME/bin
+mkdir $NETFILTER_BIN
+
+# version : prod vs test
+LATEST=${NETFILTER_BIN}/prod
 if [[ $1 == "test" ]] ; then
-    VERSION=test
+    LATEST=${NETFILTER_BIN}/test
 fi
-         
-LATEST=${NETFILTER_BIN}/netfilter_bin/${VERSION}
-
-
 
 # create new symbolic links
 #
@@ -43,12 +46,12 @@ sudo ln ${LATEST}/download.service ${SYSTEMD_DIR}/download.service
 sudo rm ${SYSTEMD_DIR}/download.timer
 sudo ln ${LATEST}/download.timer ${SYSTEMD_DIR}/download.timer
 
-# update syslogd with unique mac
-mac=`ifconfig -a eth0 | awk '/ether/ { print $2 } ' | sed 's/://g'`
-if test -z "$mac"  ; then mac="mac_unknown"; fi
+# DONT update syslogd with unique mac
 sudo rm /etc/rsyslog.d/22-loggly.conf
-cat ${LATEST}/22-loggly.conf | sudo sed 's/MAC_ADDRESS/'$mac'/g' > ./tmp.conf
-sudo mv ./tmp.conf /etc/rsyslog.d/22-loggly.conf
+#mac=`ifconfig -a eth0 | awk '/ether/ { print $2 } ' | sed 's/://g'`
+#if test -z "$mac"  ; then mac="mac_unknown"; fi
+#cat ${LATEST}/22-loggly.conf | sudo sed 's/MAC_ADDRESS/'$mac'/g' > ./tmp.conf
+#sudo mv ./tmp.conf /etc/rsyslog.d/22-loggly.conf
 
 sudo /bin/systemctl daemon-reload
 
@@ -56,7 +59,7 @@ sudo systemctl enable rsyslog.service
 sudo systemctl enable download.timer
 sudo systemctl enable download.service
 sudo systemctl enable netfilter.service
-sudo systemctl restart rsyslog.service
+#sudo systemctl restart rsyslog.service
 sudo systemctl restart netfilter.service
 sudo systemctl restart download.timer
 

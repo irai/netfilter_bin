@@ -4,7 +4,7 @@ Wants=network-online.target
 After=network.target network-online.target
 
 [Service]
-WorkingDirectory=/home/netfilter/spinifex
+WorkingDirectory=/home/netfilter
 Type=simple
 User=root
 
@@ -14,8 +14,8 @@ ExecStartPre=-/bin/systemctl stop dhcpcd.service
 ExecStartPre=-/usr/bin/pkill dhcpd
 ExecStartPre=-/usr/bin/pkill dhclient
 
-ExecStart=/home/netfilter/spinifex/bin/netfilter.script start
-ExecStop=/home/netfilter/spinifex/bin/netfilter.script stop
+ExecStart=/home/netfilter/bin/netfilter.script start
+ExecStop=/home/netfilter/bin/netfilter.script stop
 
 RemainAfterExit=no
 RestartSec=240

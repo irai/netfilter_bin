@@ -12,13 +12,14 @@
 #
 IFF=eth0
 GW=blockthekids.com:443
+HOME=/home/netfilter
   
 start() {
   #echo "Updating netfilter from github"
-  #(cd netfilter_bin; git pull https://github.com/irai/netfilter_bin.git; sudo bash ./setup.sh)
+  #(cd $HOME/netfilter_bin; git pull https://github.com/irai/netfilter_bin.git; sudo bash ./setup.sh)
    
   echo "Starting netfilter"
-  mkdir ./private
+  mkdir $HOME/private
  
   # disable DHCP client
   # see: https://help.ubuntu.com/community/NetworkConfigurationCommandLine/Automatic
@@ -28,7 +29,7 @@ start() {
   #sudo pkill dhcpd
   #sudo pkill dhclient
 
-  exec /home/netfilter/spinifex/bin/netfilter -i $IFF -gw $GW -script /home/netfilter/spinifex/bin/firewall.sh 
+  exec $HOME/bin/netfilter -i $IFF -gw $GW -script $HOME/bin/firewall.sh 
 }
 
 stop() {
