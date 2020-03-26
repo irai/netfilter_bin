@@ -14,9 +14,9 @@ NETFILTER_BIN=$HOME/bin
 mkdir $NETFILTER_BIN
 
 # version : prod vs test
-LATEST=${NETFILTER_BIN}/prod
+LATEST=${HOME}/netfilter_bin/prod
 if [[ $1 == "test" ]] ; then
-    LATEST=${NETFILTER_BIN}/test
+  LATEST=${HOME}/netfilter_bin/test
 fi
 
 # create new symbolic links
